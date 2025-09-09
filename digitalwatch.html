@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="clock">Loading....</div>
+    <script>
+
+        function DigitalClock() {
+        let now=new Date();
+        console.log(now); 
+
+        let hours=now.getHours();
+        console.log(hours);
+        let minit=now.getMinutes();
+        console.log(minit);
+        let second=now.getSeconds();
+        console.log(second)
+
+        const ampm=hours >=12 ? 'pm':'am'
+        console.log(ampm)
+
+        hours = hours % 12;
+        hours = hours ? hours : 12;
+
+        const hh=String(hours).padStart(2,'0');
+        const mm=String(minit).padStart(2,'0');
+        const ss=String(second).padStart(2,'0');
+
+        const timeString=`${hh}:${mm}:${ss}`;
+        document.getElementById("clock").textContent=timeString;
+        }
+        DigitalClock();
+        setInterval(DigitalClock,1000);
+    </script>
+</body>
+</html>
