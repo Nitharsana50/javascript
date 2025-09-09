@@ -1,0 +1,45 @@
+import { validateEmail } from "./utils.js";
+
+class User {
+  #name;
+  #email;
+
+  constructor(name, email) {
+    this.#name = name;
+    if (User.isValidEmail(email)) {
+      this.#email = email;
+    } else {
+      throw new Error("Invalid email format");
+    }
+}
+  get name() {
+    return this.#name;
+  }
+
+  set name(newName) {
+    if (newName.trim().length > 0) {
+      this.#name = newName;
+    } else {
+      throw new Error("Name cannot be empty");
+    }
+  }
+  get email() {
+    return this.#email;
+  }
+
+  set email(newEmail) {
+    if (User.isValidEmail(newEmail)) {
+      this.#email = newEmail;
+    } else {
+      throw new Error("Invalid email format");
+    }
+  }
+  static isValidEmail(email) {
+    return validateEmail(email);
+  }
+}
+User.prototype.logActivity = function (activity) {
+  console.log(`[${this.name}] performed activity: ${activity}`);
+};
+
+export default User;
